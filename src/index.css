@@ -13,11 +13,11 @@
   --color-text-secondary: #9d9da5;
   --color-text-muted: #6b6b73;
 
-  /* Marca (roxo violeta, combinando com o traço branco/preto da logo) */
-  --color-accent: #8b5cf6;
-  --color-accent-light: #a78bfa;
-  --color-accent-dark: #7c3aed;
-  --color-accent-contrast: #f5f3ff;
+  /* Marca (branco, combinando com o traço da logo) */
+  --color-accent: #ffffff;
+  --color-accent-light: #ffffff;
+  --color-accent-dark: #e4e4e7;
+  --color-accent-contrast: #18181b;
 
   /* Semanticas */
   --color-success: #2dd4a7;
