@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  /* Superficies: cinza-chumbo neutro (levemente frio), nao marrom */
+  --color-background: #121317;
+  --color-surface: #1b1c22;
+  --color-surface-raised: #24252c;
+  --color-sidebar: #0e0f12;
+  --color-border: #2a2b32;
+
+  /* Texto */
+  --color-text-primary: #f2f2f0;
+  --color-text-secondary: #9d9da5;
+  --color-text-muted: #6b6b73;
+
+  /* Marca (roxo violeta, combinando com o traço branco/preto da logo) */
+  --color-accent: #8b5cf6;
+  --color-accent-light: #a78bfa;
+  --color-accent-dark: #7c3aed;
+  --color-accent-contrast: #f5f3ff;
+
+  /* Semanticas */
+  --color-success: #2dd4a7;
+  --color-success-contrast: #04342c;
+  --color-warning: #d4913a;
+  --color-danger: #e2564c;
+  --color-danger-contrast: #4a1512;
+
+  /* Paleta de avatares (identidade visual de clientes/comandas) */
+  --color-avatar-1: #f0b429;
+  --color-avatar-2: #e2694c;
+  --color-avatar-3: #e08a3c;
+  --color-avatar-4: #4ea1e0;
+  --color-avatar-5: #2dd4a7;
+  --color-avatar-6: #e2699b;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
