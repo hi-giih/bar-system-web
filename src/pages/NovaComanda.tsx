@@ -3,7 +3,7 @@ import { TbArrowLeft } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { Button } from '../components/ui/Button'
-import { Select } from '../components/ui/Select'
+import { ComboBox } from '../components/ui/ComboBox'
 import { TextField } from '../components/ui/TextField'
 import { useClientesQuery, useCriarClienteMutation } from '../features/clientes/useClientes'
 import { useCriarComandaMutation } from '../features/comandas/useComandas'
@@ -66,20 +66,17 @@ export function NovaComanda() {
       </div>
 
       <form onSubmit={handleSubmit} className="mx-auto max-w-sm">
-        <Select
+        <ComboBox
           id="cliente"
           label="Cliente"
+          placeholder="Digite pra buscar..."
           value={clienteId}
-          onChange={(e) => setClienteId(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          {clientes?.map((cliente) => (
-            <option key={cliente.id} value={cliente.id}>
-              {cliente.nome}
-            </option>
-          ))}
-          <option value={CADASTRAR_NOVO}>+ Cadastrar novo cliente</option>
-        </Select>
+          onChange={setClienteId}
+          options={[
+            ...(clientes?.map((cliente) => ({ valor: String(cliente.id), rotulo: cliente.nome })) ?? []),
+            { valor: CADASTRAR_NOVO, rotulo: '+ Cadastrar novo cliente' },
+          ]}
+        />
 
         {cadastrandoNovo && (
           <>

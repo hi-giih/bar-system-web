@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Button } from '../../components/ui/Button'
-import { Select } from '../../components/ui/Select'
+import { ComboBox } from '../../components/ui/ComboBox'
 import { TextField } from '../../components/ui/TextField'
 import { useProdutosQuery } from '../produtos/useProdutos'
 
@@ -34,19 +34,14 @@ export function AdicionarProdutoForm({ isSubmitting, onSubmit }: AdicionarProdut
 
   return (
     <form onSubmit={handleSubmit}>
-      <Select
+      <ComboBox
         id="produto"
         label="Produto"
+        placeholder="Digite pra buscar..."
         value={produtoId}
-        onChange={(e) => setProdutoId(e.target.value)}
-      >
-        <option value="">Selecione...</option>
-        {produtos?.map((produto) => (
-          <option key={produto.id} value={produto.id}>
-            {produto.nome}
-          </option>
-        ))}
-      </Select>
+        onChange={setProdutoId}
+        options={produtos?.map((produto) => ({ valor: String(produto.id), rotulo: produto.nome })) ?? []}
+      />
 
       <TextField
         id="quantidade"
