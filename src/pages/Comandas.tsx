@@ -1,11 +1,14 @@
 import { useState } from 'react'
+import { TbDownload } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 import { Avatar } from '../components/ui/Avatar'
 import { Button } from '../components/ui/Button'
 import { EmptyState } from '../components/ui/EmptyState'
 import { SearchInput } from '../components/ui/SearchInput'
 import { StatusPill } from '../components/ui/StatusPill'
 import { useComandasQuery } from '../features/comandas/useComandas'
+import { api } from '../services/api'
 import { formatarData } from '../utils/formatDate'
 import { formatarMoeda } from '../utils/formatCurrency'
 import { NOMES_FORMA_PAGAMENTO } from '../utils/formaPagamento'
@@ -19,6 +22,24 @@ export function Comandas() {
   const navigate = useNavigate()
   const [aba, setAba] = useState<Aba>('abertas')
   const [busca, setBusca] = useState('')
+  const [baixandoRelatorio, setBaixandoRelatorio] = useState(false)
+
+  async function baixarRelatorio() {
+    setBaixandoRelatorio(true)
+    try {
+      const resposta = await api.get('/relatorios/comandas', { responseType: 'blob' })
+      const url = URL.createObjectURL(resposta.data)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `comandas_${new Date().toISOString().slice(0, 10)}.xlsx`
+      link.click()
+      URL.revokeObjectURL(url)
+    } catch {
+      toast.error('Não foi possível baixar o relatório.')
+    } finally {
+      setBaixandoRelatorio(false)
+    }
+  }
 
   const abertas = comandas?.filter((c) => !c.fechada) ?? []
   const fechadas = comandas?.filter((c) => c.fechada) ?? []
@@ -42,9 +63,20 @@ export function Comandas() {
             )}
           </p>
         </div>
-        <Button onClick={() => navigate('/comandas/nova')} className="px-4 py-2 text-sm">
-          + Nova
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="secondary"
+            onClick={baixarRelatorio}
+            disabled={baixandoRelatorio}
+            className="px-3 py-2 text-sm"
+            title="Baixar relatório de comandas (.xlsx)"
+          >
+            <TbDownload className="text-lg" />
+          </Button>
+          <Button onClick={() => navigate('/comandas/nova')} className="px-4 py-2 text-sm">
+            + Nova
+          </Button>
+        </div>
       </div>
 
       <div className="mb-4 flex gap-2">
