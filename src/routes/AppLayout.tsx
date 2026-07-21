@@ -8,7 +8,9 @@ export function AppLayout() {
       <Sidebar />
       <div className="flex flex-1 flex-col">
         <main className="flex-1 overflow-y-auto">
-          <Outlet />
+          <div className="mx-auto w-full max-w-2xl">
+            <Outlet />
+          </div>
         </main>
         <BottomNav />
       </div>

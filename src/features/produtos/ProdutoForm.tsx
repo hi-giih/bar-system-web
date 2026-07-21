@@ -46,6 +46,7 @@ export function ProdutoForm({ produtoEmEdicao, isSubmitting, onSubmit }: Produto
         label="Preço"
         type="number"
         step="0.01"
+        min={0.01}
         placeholder="0,00"
         error={errors.preco?.message}
         {...register('preco', { valueAsNumber: true })}

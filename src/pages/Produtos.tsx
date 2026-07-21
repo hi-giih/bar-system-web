@@ -97,7 +97,7 @@ export function Produtos() {
             {isError && 'Erro ao carregar'}
             {!isLoading && !isError && (
               <>
-                {produtos?.length ?? 0} item{produtos?.length === 1 ? '' : 's'} cadastrado
+                {produtos?.length ?? 0} {produtos?.length === 1 ? 'item' : 'itens'} cadastrado
                 {produtos?.length === 1 ? '' : 's'}
               </>
             )}
