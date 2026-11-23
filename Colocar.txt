@@ -1,3 +1,0 @@
-Uma aba de comandas fechadas - Onde fica um uma lista das comandas que foram fechadas, apenas com o nome  e o valor
-Uma opção pra escolher os icones dos produtos, da três opções: Dois tipos de inones de comidas, Icones de bebebidas
-Barra de pesquisa em todas as telas
